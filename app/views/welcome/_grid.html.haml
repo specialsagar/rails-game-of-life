@@ -1,0 +1,9 @@
+.grid
+	- for i in 0..(@rows - 1)
+		.grid-row
+			- for j in 0..(@cols - 1)
+				.grid-col
+					- if  @grid and @grid[i][j] == 1
+						.cell.active{:data=>{:row=>"#{i}", :col=>"#{j}"}}
+					- else
+						.cell{:data=>{:row=>"#{i}", :col=>"#{j}"}}

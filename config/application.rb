@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module RailsGameOfLife
   class Application < Rails::Application
+  	# use haml engine
+    config.generators do |g|
+      g.template_engine :haml
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 

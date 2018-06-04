@@ -1,0 +1,45 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.game-wrapper{
+	margin-bottom: 40px;
+	.game{
+			background: #e3e3e3;
+			padding: 4px 5px 0 5px;
+			margin: 20px 0;
+	}
+	.grid-col{
+		display: inline-block;
+	}
+}
+
+.cell{
+	cursor: pointer;
+	background: #FFF;
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	margin-bottom: 6px;
+	position: relative;
+}
+.active{
+	background: #FF621B;
+}
+
+#generation_count {
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 100px;
+	background: #cacaca;
+	font-size: 3em;
+	justify-content: center;
+	font-weight: 900;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	vertical-align: middle;
+}

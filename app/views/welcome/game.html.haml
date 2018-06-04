@@ -1,0 +1,22 @@
+%p Select live cells and begin game
+
+
+.game-wrapper
+	.game
+		= render 'grid'
+
+
+.row
+	.text-center
+		%a#start.btn.btn-primary Start
+		=link_to "Reset", :back, :class=>"btn btn-primary"
+		%br
+		%br
+		%br
+
+#generation_count
+	0
+
+:javascript 
+	var rows = #{@rows}
+	var cols = #{@cols}	
