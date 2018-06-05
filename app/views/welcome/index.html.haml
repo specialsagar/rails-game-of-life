@@ -1,10 +1,14 @@
-%h1 Welcome#index
-%p Find me in app/views/welcome/index.html.erb
 
-= form_tag('game') do
-  %p Input the grid structure you want to create
-  = text_field_tag :rows, "",:class=>"form-control", placeholder: "No. of rows"
-  %br
-  = text_field_tag :cols, "",:class=>"form-control", placeholder: "No. of cols"
-  %br
-  = submit_tag "Create", :class=>"btn btn-primary"
+.jumbotron.no-padding.no-margin
+	.container
+		.flex.flex-v-align
+			.col-xs-12.col-sm-6.col-md-3.text-center
+				%h1.bold Welcome
+				%br
+				= form_tag('game') do
+					%p Input the grid structure you want to create
+					= text_field_tag :rows, "",:class=>"form-control", placeholder: "No. of rows"
+					%br
+					= text_field_tag :cols, "",:class=>"form-control", placeholder: "No. of cols"
+					%br
+					= submit_tag "Create", :class=>"btn btn-primary"

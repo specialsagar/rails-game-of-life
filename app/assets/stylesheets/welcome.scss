@@ -4,28 +4,32 @@
 
 .game-wrapper{
 	margin-bottom: 40px;
-	.game{
+	>.game{
 			background: #e3e3e3;
 			padding: 4px 5px 0 5px;
 			margin: 20px 0;
-	}
-	.grid-col{
-		display: inline-block;
+		>.grid {
+			line-height: 1em;
+			>.grid-row {
+				>.grid-col{
+					display: inline-block;
+					>.cell{
+						cursor: pointer;
+						background: #FFF;
+						height: 10px;
+						width: 10px;
+						display: inline-block;
+						position: relative;
+						&.active{
+							background: #000;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
-.cell{
-	cursor: pointer;
-	background: #FFF;
-	height: 15px;
-	width: 15px;
-	display: inline-block;
-	margin-bottom: 6px;
-	position: relative;
-}
-.active{
-	background: #FF621B;
-}
 
 #generation_count {
 	position: fixed;
@@ -42,4 +46,24 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 	vertical-align: middle;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-direction:row;
+}
+
+.flex-v-align {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-padding {
+	padding: 0;
+}
+.no-margin {
+	margin: 0;
 }

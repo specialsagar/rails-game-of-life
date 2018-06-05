@@ -9,7 +9,11 @@
 .row
 	.text-center
 		%a#start.btn.btn-primary Start
-		=link_to "Reset", :back, :class=>"btn btn-primary"
+		%a#stop.btn.btn-primary.hidden Stop
+		%a#next.btn.btn-primary Next Gen
+		%br
+		%br
+		=link_to "Reset", welcome_index_path, :class=>"btn btn-primary", method: :get
 		%br
 		%br
 		%br
@@ -17,6 +21,6 @@
 #generation_count
 	0
 
-:javascript 
+:javascript
 	var rows = #{@rows}
 	var cols = #{@cols}	

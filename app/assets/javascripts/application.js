@@ -34,49 +34,62 @@
 
 
 
+// initialize global vars
+var timer,load = true,cells = [],count = 0;
 
 $(function(){
-	$(document.body).on('click', '#start', function(e){
-		var load = true;
-		var count = 1;
+	function loadNextGen() {
+		// show generation count
+		count ++;
+		$('#generation_count').text(count);
 
-		var cells = [];
-		// create mapping of all live cells
+		if (load) {
+			loadCells();
+		}
+
+		$.ajax({
+			url: "/start_game",
+			method: "POST",
+			data: {'rows': rows, 'cols': cols, 'load': load, 'cells': cells},
+		});
+		load = false;
+	}
+
+	// create mapping of all live cells
+	function loadCells() {
 		$('.active').each(function(){
 			var col = parseInt($(this).data('col'));
 			var row = parseInt($(this).data('row'));
 			cells.push([row,col]);
 		});
+	}
 
-		// refresh map 0.6s
-		(function loop() {
-			e.preventDefault();	
-			// show generation count
-			$('#start').remove();
-			$('#generation_count').text(count);
-			count ++;
-
-			$.ajax({
-				url: "/start_game",
-				method: "POST",
-				data: {load: load, rows: rows, cols: cols, cells: cells},
-			});
-
-			// repeat process
-			setTimeout(function(){
-				load = false;
-				loop();
-			}, 1000);	
-		}());
+	$(document).on('click', '#start', function(e){
+		$(this).addClass('hidden');
+		$('#stop').removeClass('hidden');
+		$('#next').addClass('hidden');
+		// repeat process every 1s
+	    timer = setInterval(loadNextGen, 1000);
 	});
-});
 
-$(function(){
-	$(document.body).on('click', '.cell', function(){
-		if(!$(this).hasClass("active")) {
-			$(this).addClass("active");
-		} else {
-			$(this).removeClass("active");
+	$(document).on('click', '.cell', function(){
+		// allow updating cells only first time
+		if (load) {
+			if(!$(this).hasClass("active")) {
+				$(this).addClass("active");
+			} else {
+				$(this).removeClass("active");
+			}
 		}
+	});
+
+	$(document).on('click', '#stop', function(e){
+		$('#start').removeClass('hidden');
+		$('#next').removeClass('hidden');
+		clearInterval(timer);
+	});
+
+	$(document).on('click', '#next', function(e){
+		loadNextGen();
 	});
 });

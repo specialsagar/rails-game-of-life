@@ -11,8 +11,11 @@ class WelcomeController < ApplicationController
 	end
 
 	def start_game
-		@rows=params[:rows].gsub(/\D/, '').to_i
-		@cols=params[:cols].gsub(/\D/, '').to_i
+		@rows=params[:rows].to_i
+		@cols=params[:cols].to_i
+		puts @rows
+		puts '*'*100
+		puts @rows
 		cells = []
 		if params[:load] == 'true'
 			params[:cells].values.each do |col, row|
@@ -20,6 +23,7 @@ class WelcomeController < ApplicationController
 			end
 			@@game.load cells
 		end
-		@grid = @@game.execute
+
+		@grid = @@game.calc_next_gen
 	end
 end

@@ -4,22 +4,22 @@ class Game
 	def initialize(cols, rows)
 		@cols = cols
 		@rows = rows
-		@grid = Array.new(rows) { Array.new(cols, 0) }
+		@grid = create_grid
 	end
 
 	def load(cells)
 		cells.each { |y, x| grid[y][x] = 1 }
 	end
 
-	def neighbors_count(y, x)
+	def count_live_neighbour(y, x)
 		neighbors(y, x).count { |cell| cell == 1 }
 	end
 
-	def execute
-		new_grid = Array.new(rows) { Array.new(cols, 0) }
+	def calc_next_gen
+		new_grid = create_grid
 		grid.each_with_index do |row, y|
 			row.each_with_index do |cell, x|
-				count = neighbors_count(y, x)
+				count = count_live_neighbour(y, x)
 				new_grid[y][x] = begin
 					if cell.zero?
 						[3].include?(count) ? 1 : 0
@@ -33,6 +33,10 @@ class Game
 	end
 
 	private
+
+	def create_grid
+		Array.new(rows) { Array.new(cols, 0) }
+	end
 
 	# 8 cells around the selected cell
 	def neighbors(y, x)
