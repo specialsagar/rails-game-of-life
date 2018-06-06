@@ -11,11 +11,8 @@ class WelcomeController < ApplicationController
 	end
 
 	def start_game
-		@rows=params[:rows].to_i
-		@cols=params[:cols].to_i
-		puts @rows
-		puts '*'*100
-		puts @rows
+		@rows = @@game.rows
+		@cols = @@game.cols
 		cells = []
 		if params[:load] == 'true'
 			params[:cells].values.each do |col, row|

@@ -50,7 +50,7 @@ $(function(){
 		$.ajax({
 			url: "/start_game",
 			method: "POST",
-			data: {'rows': rows, 'cols': cols, 'load': load, 'cells': cells},
+			data: {'load': load, 'cells': cells},
 		});
 		load = false;
 	}
